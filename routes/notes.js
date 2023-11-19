@@ -92,6 +92,11 @@ router.post("/", async (req, res) => {
  *     tags: [Notes]
  *     parameters:
  *       - in: query
+ *         name: title
+ *         schema:
+ *           type: string
+ *         description: filter by title
+ *       - in: query
  *         name: tags
  *         schema:
  *           type: string
@@ -136,6 +141,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     try {
         let query = req.query.tags ? { tags: { $in: req.query.tags.split(",") } } : {};
+        if(req.query.title && req.query.title!="") query["title"] = req.query.title
         const notes = await _db.mongodb.findMany(CONSTANT.NOTES_COLLECTION, query);
         res.status(200).send({ notes, count: notes.length })
     } catch (err) {
