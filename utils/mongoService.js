@@ -1,6 +1,6 @@
 const ObjectId = require('mongodb').ObjectId;
 const db = require('../models/index');
-
+// Database wrappers
 class MongodbService {
   constructor() {}
 

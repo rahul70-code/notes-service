@@ -17,6 +17,7 @@
     "express-validation": "^4.1.0",
     "mongoose": "^8.0.1",
     "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "winston": "^3.11.0"
   }
 }

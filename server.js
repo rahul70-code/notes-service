@@ -3,15 +3,20 @@ const express = require("express"),
     app = express(),
     { ValidationError } = require("express-validation"),
     loggerMiddleware = require('./middleware/logger'),
-    CONSTANT = require('./utils/constants')
+    CONSTANT = require('./utils/constants'),
+    swaggerUi = require('swagger-ui-express'),
+    swaggerJsdoc = require('swagger-jsdoc');
 
-// to configure .env file to store sensitive data
+
+// file load the models
 require("./models")
+// file to seed some pre-defined notes if database is empty
 require('./utils/seedDB')
-// require('./swagger/swagger')
 
+// parse the request body from post/put apis
 app.use(bodyParser.json());
 
+// Main routes
 const routes = require("./routes")
 
 app.use('/api',
@@ -19,6 +24,23 @@ app.use('/api',
     loggerMiddleware
     , routes);
 
+/**
+ * Swagger definition to document the Endpoints defined in the routes
+ */
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Notes service API Documentation',
+            version: '1.0.0',
+        },
+    },
+    apis: ['./routes/*.js'],
+};
+
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // middleware for request/response handling.
 app.use(function (err, req, res, next) {
