@@ -50,9 +50,11 @@ npm run start
 
 ## Swagger URI for Endpoints
 
-Test the endpoints using the below URI
+Once you start the server test the endpoints using the below URI
 
 ```
 http://127.0.0.1:6000/api-docs
 
 ```
+
+Note - You need to add the same port which you mentioned in .env file
