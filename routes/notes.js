@@ -11,7 +11,7 @@ const CONSTANT = require('../utils/constants')
  * @swagger
  * tags:
  *   name: Notes
- *   description: Create a Note
+ *   description: Notes module
  */
 
 /**
@@ -148,7 +148,7 @@ router.get("/", async (req, res) => {
  * @swagger
  * /api/notes/{id}:
  *   get:
- *     summary: Get a Notes
+ *     summary: Get a Note by id
  *     tags: [Notes]
  *     parameters:
  *       - in: path
