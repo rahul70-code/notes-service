@@ -10,6 +10,13 @@ sudo apt install nodejs
 sudo apt install npm
 ```
 2. Install Mongodb 
+Using docker
+```
+docker pull mongo
+docker run -d -p 27017:27017 --name mongodb mongo
+
+```
+local installation
 ```
 wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-archive-keyring.gpg
 
